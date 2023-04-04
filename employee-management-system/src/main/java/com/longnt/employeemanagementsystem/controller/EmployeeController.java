@@ -2,14 +2,13 @@ package com.longnt.employeemanagementsystem.controller;
 
 import com.longnt.employeemanagementsystem.model.Employee;
 import com.longnt.employeemanagementsystem.repository.EmployeeRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin(origins = "http://localhost:3000/")
 public class EmployeeController {
     private final EmployeeRepository employeeRepository;
 
@@ -17,8 +16,15 @@ public class EmployeeController {
         this.employeeRepository = employeeRepository;
     }
 
+    // get all employee
     @GetMapping("/employees")
     public List<Employee> getAll() {
         return employeeRepository.findAll();
+    }
+
+    // create employee rest api
+    @PostMapping("/employees")
+    public Employee createEmployee(@RequestBody Employee employee) {
+        return employeeRepository.save(employee);
     }
 }
