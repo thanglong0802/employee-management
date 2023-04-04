@@ -27,4 +27,10 @@ public class EmployeeController {
     public Employee createEmployee(@RequestBody Employee employee) {
         return employeeRepository.save(employee);
     }
+
+    // get employee by id
+    @GetMapping("/employees/{id}")
+    public Employee getEmployeeById(@PathVariable("id") Long id) {
+        return employeeRepository.findEmployeeById(id);
+    }
 }
