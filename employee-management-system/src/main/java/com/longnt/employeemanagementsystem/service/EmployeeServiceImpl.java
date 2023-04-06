@@ -36,7 +36,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employeeUpdate = repository.findEmployeeById(id).orElseThrow(() -> new ResourceNotFoundException("Not Fount" + id));
         employeeUpdate.setFirstName(employee.getFirstName());
         employeeUpdate.setLastName(employee.getLastName());
-        employeeUpdate.setEmailId(employeeUpdate.getEmailId());
+        employeeUpdate.setEmailId(employee.getEmailId());
         return ResponseEntity.ok(repository.save(employeeUpdate));
 //        return repository.findEmployeeById(id)
 //                .map(employee1 -> {
